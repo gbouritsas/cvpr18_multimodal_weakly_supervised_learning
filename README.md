@@ -2,7 +2,7 @@ Description
 =====================================
 Code
 =====================================
-# face-pipeline (MATLAB) : 
+### face-pipeline (MATLAB) : 
 This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [1],[2] and [3]. The main modifications are:
 
 - parallel implementation of the code
