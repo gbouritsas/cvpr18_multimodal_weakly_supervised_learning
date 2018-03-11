@@ -1,11 +1,11 @@
 % Moidfy this according to each movie
-movie_name='BMI'
+movie_name='BMI';
 % Paths need to be modified
 dump_dir = ['/Data/gbouritsas_thesis/movies/' movie_name '/frames/'];
 result_dir  = ['/Data/gbouritsas_thesis/movies/' movie_name '/results'];
 matconvnet_path='/Data/gbouritsas_thesis/matconvnet-1.0-beta23/matlab/vl_setupnn';
 modelPath = '/Data/gbouritsas_thesis/matconvnet-1.0-beta23/data/models/vgg-face.mat';
-GPU = true
+GPU = true;
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

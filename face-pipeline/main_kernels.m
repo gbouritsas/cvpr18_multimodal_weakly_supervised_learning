@@ -1,5 +1,5 @@
 % Moidfy this according to each movie
-movie_name='BMI'
+movie_name='BMI';
 % Paths need to be modified
 result_dir  = ['/Data/gbouritsas_thesis/movies/' movie_name '/results'];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
