@@ -8,7 +8,7 @@ function vggVec = describe_face_vgg(K,convNet)
 	crop= single(crop) ; % note: 255 range
 	%crop = imresize(crop, convNet.meta.normalization.imageSize(1:2)) ;
 	crop= bsxfun(@minus,crop,convNet.meta.normalization.averageImage) ;
-	if GPU_flag=true
+	if GPU_flag==true
 		crop = gpuArray(crop);
 	end
 	res = vl_simplenn(convNet, crop) ;
