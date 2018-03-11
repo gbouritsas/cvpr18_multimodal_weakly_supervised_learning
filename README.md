@@ -3,18 +3,29 @@ Description
 Code
 =====================================
 1)face-pipeline (MATLAB) : This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [1],[2] and [3]. The main modifications are:
+
 -> parallel implementation of the code
 -> small modifications in the formation of the face tracks (detector score threshold, post-processing of face tracks)
 -> added code to represent faces with VGG
 -> modified the computation of kernels (the detector scores are not taken into account)
-have to modify the paths in the following files
+
+Prior to running the code you will have to:
+
+a. Split each video into individual frames
+b. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.19)
+c. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta23)
+d. Modify the paths in the files main.m, main_vgg.m and main_kernels.m
+
+
 To run the code type:
 ```
 a. compile : compiles the mex functions
-a. main: runs the modified face pipeline (faces are represented with SIFT descriptors)
-b. main_vgg: extracts the VGG-face representation
-c. main_kernels: computes the kernels (both from VGG and SIFT).
+b. main: runs the modified face pipeline (faces are represented with SIFT descriptors)
+c. main_vgg: extracts the VGG-face representation
+d. main_kernels: computes the kernels (both from VGG and SIFT).
 ```
+
+
 
 2)text_processing (MATLAB + PYTHON, WINDOWS to run the batch files - not very important): text pipeline as described in the thesis
 all1.bat :
