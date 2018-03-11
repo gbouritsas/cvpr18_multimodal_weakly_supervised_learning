@@ -8,7 +8,7 @@ movie_name='BMI';s1  =1;s2  =46940;
 % Paths need to be modified
 vl_feat_path = '/rmt8/mobot/external_packages/vlfeat-0.9.19/toolbox/vl_setup';
 dump_dir = ['/rmt9/pkoutras/gbouritsas_thesis/movies/' movie_name '/frames/'];
-result_dir  = ['/rmt9/pkoutras/gbouritsas_thesis/movies/' movie_name '/results'];
+result_dir  = ['/rmt9/pkoutras/gbouritsas_thesis/movies/' movie_name '/results_face'];
 model_dir   = 'models';
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
