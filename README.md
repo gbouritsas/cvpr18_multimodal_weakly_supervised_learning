@@ -13,8 +13,8 @@ This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/
 Prior to running the code you will have to:
 
 1. Split each video into individual frames . 
-2. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.19) . 
-3. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta23) . 
+2. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.21) . 
+3. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta25) . 
 4. Modify the paths in the files main.m, main_vgg.m and main_kernels.m . 
 
 The code for the extraction of the VGG descriptor is set to run on GPU. In case GPU is not available modify the main_vgg.m file as follows:
