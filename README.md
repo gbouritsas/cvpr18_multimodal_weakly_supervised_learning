@@ -2,18 +2,24 @@ Description
 =====================================
 Code
 =====================================
-1)face-pipeline (MATLAB) : This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [1],[2] and [3]. The main modifications are:
+1) face-pipeline (MATLAB) : This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [1],[2] and [3]. The main modifications are:
 
 -> parallel implementation of the code
+
 -> small modifications in the formation of the face tracks (detector score threshold, post-processing of face tracks)
+
 -> added code to represent faces with VGG
+
 -> modified the computation of kernels (the detector scores are not taken into account)
 
 Prior to running the code you will have to:
 
 a. Split each video into individual frames
+
 b. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.19)
+
 c. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta23)
+
 d. Modify the paths in the files main.m, main_vgg.m and main_kernels.m
 
 
