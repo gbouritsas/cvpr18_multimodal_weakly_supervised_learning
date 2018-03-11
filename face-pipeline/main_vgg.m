@@ -42,5 +42,3 @@ if GPU==true
   net=vl_simplenn_move(net,'gpu');
 end
 features_and_speakers(result_dir, model_dir,net, dump_string);
-
-facedets_kernel_no_pconf_check(result_dir);
