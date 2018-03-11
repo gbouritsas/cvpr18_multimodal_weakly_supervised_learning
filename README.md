@@ -17,7 +17,10 @@ Prior to running the code you will have to:
 3. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta23) . 
 4. Modify the paths in the files main.m, main_vgg.m and main_kernels.m . 
 
-
+The code for the extraction of the VGG descriptor is set to run on GPU. In case GPU is not available modify the main_vgg.m file as follows:
+```
+GPU=false
+```
 To run the code type:
 ```
 a. compile : compiles the mex functions
