@@ -5,6 +5,7 @@ dump_dir = ['/Data/gbouritsas_thesis/movies/' movie_name '/frames/'];
 result_dir  = ['/Data/gbouritsas_thesis/movies/' movie_name '/results'];
 matconvnet_path='/Data/gbouritsas_thesis/matconvnet-1.0-beta23/matlab/vl_setupnn';
 modelPath = '/Data/gbouritsas_thesis/matconvnet-1.0-beta23/data/models/vgg-face.mat';
+GPU = true
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -36,7 +37,9 @@ newnet=net;
 newnet.layers=newnet.layers(1:end-2);
 net=newnet;
 clear newnet
-net=vl_simplenn_move(net,'gpu');
+if GPU==true
+  net=vl_simplenn_move(net,'gpu');
+end
 features_and_speakers(result_dir, model_dir,net, dump_string);
 
 facedets_kernel_no_pconf_check(result_dir);
