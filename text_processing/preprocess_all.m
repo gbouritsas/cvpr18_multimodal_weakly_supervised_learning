@@ -10,7 +10,7 @@ function preprocess_all(movies)
 	list_file=[movies_folder 'filelist1.txt'];
 
 	% Add your TMDB api key below.
-	api_key='api_key=5f63aa856dfa7e1bb5a5ec19cb408f1c';
+	api_key='api_key=';
 
 	k=1;
     i=1;
