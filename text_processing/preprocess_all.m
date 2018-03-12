@@ -10,9 +10,10 @@ function preprocess_all(movies)
 	list_file=[movies_folder 'filelist1.txt'];
 
 	% Add your TMDB api key below.
-	api_key='api_key=';
+	api_key='api_key=5f63aa856dfa7e1bb5a5ec19cb408f1c';
 
 	k=1;
+    i=1;
 	files=cell(1,2*size(movies,2));
 	for movie_name=movies
 
@@ -20,8 +21,9 @@ function preprocess_all(movies)
 		input_folder=fullfile([movies_folder movie_name]);
 		movie_name_file=[movie_name '.txt'];
 		result_folder=fullfile([movies_folder movie_name '/results_script/']);
-		files{k}=fullfile([result_folder movies_name '_preprocessed.txt']);
+		files{k}=fullfile([result_folder movie_name '_preprocessed.txt']);
 		files{k+1}=regexprep(movies{i},'^.*$','\r\n');
+        i=i+1;
 		k=k+2;
 
 		if ~exist(result_folder, 'dir')
