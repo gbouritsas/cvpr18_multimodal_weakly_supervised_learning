@@ -29,7 +29,10 @@ c. main_vgg: extracts the VGG-face representation
 d. main_kernels: computes the kernels (both from VGG and SIFT).
 ```
 
-
+To manually annotate face tracks run:
+```
+check_tracks
+```
 
 2)text_processing (MATLAB + PYTHON, WINDOWS to run the batch files - not very important): text pipeline as described in the thesis
 all1.bat :
