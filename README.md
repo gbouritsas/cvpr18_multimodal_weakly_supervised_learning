@@ -2,8 +2,8 @@ Description
 =====================================
 Code
 =====================================
-### face-pipeline (MATLAB) : 
-This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [1],[2] and [3]. The main modifications are:
+### face-pipeline (MATLAB) :
+This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [2],[3] and [4]. The main modifications are:
 
 - parallel implementation of the code
 - small modifications in the formation of the face tracks (detector score threshold, post-processing of face tracks)
@@ -12,10 +12,10 @@ This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/
 
 Prior to running the code you will have to:
 
-1. Split each video into individual frames . 
-2. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.21) . 
-3. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta25) . 
-4. Modify the paths in the files main.m, main_vgg.m and main_kernels.m . 
+1. Split each video into individual frames .
+2. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.21) .
+3. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta25) .
+4. Modify the paths in the files main.m, main_vgg.m and main_kernels.m .
 
 The code for the extraction of the VGG descriptor is set to run on GPU. In case GPU is not available modify the main_vgg.m file as follows:
 ```
@@ -34,9 +34,17 @@ To manually annotate face tracks run:
 check_tracks
 ```
 
-2)text_processing (MATLAB + PYTHON, WINDOWS to run the batch files - not very important): text pipeline as described in the thesis
+### text_processing (MATLAB + PYTHON):
+This code implements the text processing pipeline as described in the paper [1].
 all1.bat :
-	preprocess_all:	preprocesses the scripts,
+
+1. Download StanfordCoreNLP
+2. Modify the paths in the files preprocess_all,
+3. Sign in to TMDB and obtain an api_key. For new movies you need to form new queries to the database.
+4.  We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
+```
+preprocess_all({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}):	preprocesses the scripts,
+```
 					transforms them to the format used for the script segmentation (MONOLOGUE, DESCRIPTION, etc.)
 					downloads cast list from TMDB (personal api key needed) ,preprocesses it and saves the query regular expressions
 	calls StanfordCoreNLP (needs to be downloaded) annotators : tokenize,ssplit,pos,lemma,depparse
@@ -68,7 +76,7 @@ optimize_with_prior : variety of experiments on action using prior knowledge fro
 1)manual_annotation_manipulation : extraction of the annotated labels and store as matlab structures
 References
 =====================================
-[1] M. Everingham, J. Sivic and A. Zisserman. "Hello! My name is... Buffy" - Automatic Naming of Characters in TV Video. BMVC 2006.
-[2] J. Sivic, M. Everingham and A. Zisserman. "Who are you?" : Learning person specific classifiers from video. CVPR 2009.
-
-[3] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic: Finding actors and actions in movies, ICCV 2013
+[1] G. Bouritsas, P. Koutras, A. Zlatintsi and P. Maragos. Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques. CVPR 2018
+[2] M. Everingham, J. Sivic and A. Zisserman. "Hello! My name is... Buffy" - Automatic Naming of Characters in TV Video. BMVC 2006.
+[3] J. Sivic, M. Everingham and A. Zisserman. "Who are you?" : Learning person specific classifiers from video. CVPR 2009.
+[4] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic. Finding actors and actions in movies. ICCV 2013
