@@ -1,8 +1,8 @@
 % movie_name='CRA';
 % movie_name='DEP';
-% movie_name='GLA';
 % movie_name='LOR';
-% Moidfy these according to each movie
+% movie_name='GLA';
+
 movie_name='BMI';
 % Paths need to be modified
 dump_dir = ['../../../movies/' movie_name '/frames/'];
