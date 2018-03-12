@@ -1,19 +1,15 @@
-%Gia na sou emfanisei to epomeno track patas ena opoiodhpote plhktro
-
-%spas ta frames me ffmpeg -i ../BMI.avi -r 25  image-%06d.png
-
-
-%%CHANGE THIS:fakelos pou vriskontai ta frames
-dump_dir = '../../../tainies/LOR/frames/';
-
-%%CHANGE THIS:fakelos pou vriskontai ta facedets
-result_dir  = '../../../tainies/LOR/results_face/';
+% movie_name='CRA';
+% movie_name='DEP';
+% movie_name='GLA';
+% movie_name='LOR';
+% Moidfy these according to each movie
+movie_name='BMI';
+% Paths need to be modified
+dump_dir = ['../../../movies/' movie_name '/frames/'];
+result_dir  = ['../../../tainies/' movie_name '/results/'];
 
 
 dump_string = [dump_dir '/image-%06d.png'];
-
-
-
 facedetfname    = 'facedets.mat';
 facedetpath     = fullfile(result_dir, facedetfname);
 load(facedetpath);
@@ -24,7 +20,7 @@ track = cat(1, facedets.track);
 utrack = unique(track);
 f   = cat(1, [], facedets.frame);
 rect    = cat(2, [], facedets.rect);
-rect=rect'; 
+rect=rect';
 
 
 %%ama thes na ksekinhseis apo endiameso track allazeis to i=1:length(utrack) kai vazeis to noumero ths grammhs tou txt apo thn opoia %%theleis na ksekinhseis ,dhladh to noumero tou unique track. OXI TO NOUMERO TOU TRACK. P.x ama exeis meinei sthn grammh 49 kai to noumero tou track einai 65 kai theleis na ksanadeis authn thn grammh, tote vazeis i=49:length(utrack)
