@@ -34,13 +34,13 @@ To manually annotate face tracks run:
 check_tracks
 ```
 
-### text_processing (MATLAB + PYTHON):
+### text_processing (MATLAB + Python):
 This code implements the text processing pipeline as described in the paper [1].
 all1.bat :
 
 1. Download StanfordCoreNLP
-2. Modify the paths in the files preprocess_all,
-3. Sign in to TMDB and obtain an api_key. For new movies you need to form new queries to the database.
+2. Modify the paths in the files preprocess_all.m,
+3. Sign up to TMDB, obtain an api_key and add it to preprocess_all.m. For new movies you need to form new queries to the database.
 4.  We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
 ```
 preprocess_all({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}):	preprocesses the scripts,

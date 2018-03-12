@@ -32,17 +32,17 @@ function preprocess_all(movies)
 		if strcmp(movie_name,'BMI')==1
 			movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=beautiful%20mind&page=1&include_adult=false&year=2001']);
 		elseif strcmp(movie_name,'CRA')==1
-			movie=urlread('https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=crash&page=1&include_adult=false&year=2004');
+			movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=crash&page=1&include_adult=false&year=2004']);
 		elseif strcmp(movie_name,'DEP')==1
-			movie=urlread('https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=the%20departed&page=1&include_adult=false&year=2006');
+			movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=the%20departed&page=1&include_adult=false&year=2006']);
 		elseif strcmp(movie_name,'GLA')==1
-			movie=urlread('https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=gladiator&page=1&include_adult=false&year=2000');
+			movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=gladiator&page=1&include_adult=false&year=2000']);
 		elseif isempty(regexp(regexprep(movie_name,'[0-9]',''),'GWW'))==0
-			movie=urlread('https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=gone%20with%20the%20wind&page=1&include_adult=false&year=1939');
+			movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=gone%20with%20the%20wind&page=1&include_adult=false&year=1939']);
 		elseif strcmp(movie_name,'LOR')==1
-			movie=urlread('https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=lord%20of%20the%20rings%20the%20return%20of%20the%20king&page=1&include_adult=false&year=2003');
+			movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=lord%20of%20the%20rings%20the%20return%20of%20the%20king&page=1&include_adult=false&year=2003']);
     elseif strcmp(movie_name,'Casablanca')==1
-      movie=urlread('https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=Casablanca&page=1&include_adult=false&year=1942');
+      movie=urlread(['https://api.themoviedb.org/3/search/movie?' api_key '&language=en-US&query=Casablanca&page=1&include_adult=false&year=1942']);
     end
 
 		movie=parse_json(movie);
