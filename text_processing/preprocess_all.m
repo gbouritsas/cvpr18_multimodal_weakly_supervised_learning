@@ -2,11 +2,11 @@ function preprocess_all(movies)
 
 	global api_key
 
-	% This path needs to be modified.
+	% This path needs to get modified.
 	% We assume that each movie script has the same name with the movie (extension .txt)
 	% and is located in a folder that has also the same name
 
-	movies_folder='../../movies/';
+	movies_folder='~/Documents/movies/';
 	list_file=[movies_folder 'filelist1.txt'];
 
 	% Add your TMDB api key below.
@@ -21,9 +21,11 @@ function preprocess_all(movies)
 		input_folder=fullfile([movies_folder movie_name]);
 		movie_name_file=[movie_name '.txt'];
 		result_folder=fullfile([movies_folder movie_name '/results_script/']);
-		files{k}=fullfile([result_folder movie_name '_preprocessed.txt']);
+
+		result_folder_for_CoreNLP=fullfile([movie_name '/results_script/']);
+		files{k}=fullfile([result_folder_for_CoreNLP movie_name '_preprocessed.txt']);
 		files{k+1}=regexprep(movies{i},'^.*$','\r\n');
-        i=i+1;
+    i=i+1;
 		k=k+2;
 
 		if ~exist(result_folder, 'dir')
