@@ -1,4 +1,4 @@
-movie_name='CRA';coordinate='face';
+movie_name='LOR';coordinate='face';
 global movies_folder;movies_folder = '/Users/giorgosmpouritsas/Documents/movies/';
 global categories_folder;categories_folder='../manual_annotation';
 global categories_extended_file;categories_extended_file='/categories_ids.mat';

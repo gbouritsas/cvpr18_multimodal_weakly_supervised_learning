@@ -76,11 +76,11 @@ a. preprocess_all({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}):	(MATLAB) preprocesses th
 ```
 Go to the folder where your movies are saved, open a terminal and run:
 
-b. java  --add-modules java.se.ee -cp "../stanford-corenlp-full-2018-01-31/*" -Xmx1200m edu.stanford.nlp.pipeline.StanfordCoreNLP -enforceRequirements false -annotators tokenize,ssplit,pos,lemma,depparse -filelist filelist1.txt -outputDirectory serialized_outputs/ -outputFormat serialized:  Executes all the necessary annotators in order to perform the dependency parsing on each document
+b. java  --add-modules java.se.ee -cp "../stanford-corenlp-full-2018-01-31/*" -Xmx3000m edu.stanford.nlp.pipeline.StanfordCoreNLP -enforceRequirements false -annotators tokenize,ssplit,pos,lemma,ner,depparse -filelist filelist1.txt -outputDirectory serialized_outputs/ -outputFormat serialized:  Executes all the necessary annotators in order to perform the dependency parsing on each document (ner is optional).
 
 Modify this movie list if necessary
 c. for i in BMI CRA DEP GLA LOR; do
-	java --add-modules java.se.ee -cp "../stanford-corenlp-full-2018-01-31/*" -Xmx3000m edu.stanford.nlp.pipeline.StanfordCoreNLP -enforceRequirements false -annotators ner, regexner -file 	serialized_outputs/"$i"_preprocessed.txt.ser.gz -regexner.mapping "$i"/results_script/"$i"_mapping.txt -outputDirectory "$i"/results_script/
+	java --add-modules java.se.ee -cp "../stanford-corenlp-full-2018-01-31/*" -Xmx1200m edu.stanford.nlp.pipeline.StanfordCoreNLP -enforceRequirements false -annotators regexner -file 	serialized_outputs/"$i"_preprocessed.txt.ser.gz -regexner.mapping "$i"/results_script/"$i"_mapping.txt -outputDirectory "$i"/results_script/
 done: Annotates the script with person labels according to the regular expression queries.
 ```
 
