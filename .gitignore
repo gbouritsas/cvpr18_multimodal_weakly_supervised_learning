@@ -80,6 +80,8 @@ coverage.xml
 *.cover
 .hypothesis/
 
+word_embeddings/
+
 # Translations
 *.mo
 *.pot
