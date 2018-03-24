@@ -2,15 +2,14 @@ function preprocess_all(movies)
 
 	global api_key
 
-	% This path needs to get modified.
 	% We assume that each movie script has the same name with the movie (extension .txt)
 	% and is located in a folder that has also the same name
 
-	movies_folder='~/Documents/movies/';
+	global movies_folder
 	list_file=[movies_folder 'filelist1.txt'];
 
 	% Add your TMDB api key below.
-	api_key='api_key=';
+	%api_key='api_key=';
 
 	k=1;
     i=1;

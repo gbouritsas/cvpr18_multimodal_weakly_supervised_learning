@@ -20,9 +20,8 @@ def parse_xml(movies):
 		scio.savemat(result_folder + movie_name + '_preprocessed_struct.mat',doc)
 
 # This path needs to be modified.
+global movies_folder
 movies_folder = '/Users/giorgosmpouritsas/Documents/movies/'
 # Modify this list if necessary
 movies=['BMI','CRA','DEP','GLA','LOR']
 parse_xml(movies)
-
-

@@ -1,10 +1,10 @@
 function tidy_similarities(movies,method)
 
 	%These paths needs to get modified
-	categories_folder=fullfile(['../manual_annotation']);
-	categories_old_file='/categories_ids.mat';
-	categories_new_file='/categories_ids_47.mat';
-	movies_folder='~/Documents/movies/';
+	global movies_folder
+	global categories_folder
+	global categories_small_file
+	global categories_extended_file
 
 	for movie_name=movies
 		movie_name=cell2mat(movie_name);
@@ -12,11 +12,11 @@ function tidy_similarities(movies,method)
 		input_folder=fullfile([movies_folder movie_name '/results_script']);
 		result_folder=input_folder;
 
-		categories_file=fullfile([categories_folder categories_old_file]);
+		categories_file=fullfile([categories_folder categories_extended_file]);
 		load(categories_file)
 		old_categories=categories_ids;
 
-		categories_file=fullfile([categories_folder categories_new_file]);
+		categories_file=fullfile([categories_folder categories_small_file]);
 		load(categories_file)
 		new_categories=categories_ids;
 

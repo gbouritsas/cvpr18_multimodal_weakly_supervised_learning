@@ -1,8 +1,7 @@
 function checkpassedflag=align_subs_script_all(movies,wordtowordflag,fps)
 	i=1;
 
-	% This path needs to get modified
-	movies_folder='/Users/giorgosmpouritsas/Documents/movies/';
+	global movies_folder
 
     for movie_name=movies
 
