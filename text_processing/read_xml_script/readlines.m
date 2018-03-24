@@ -2,7 +2,6 @@
 function [lines,word_id_begin,word_id_end]=readlines(fname,s)
 
 fd=fopen(fname, 'r', 'n', 'UTF-8');
-fname
 lines={};
 notEOF=1;
 count=0;

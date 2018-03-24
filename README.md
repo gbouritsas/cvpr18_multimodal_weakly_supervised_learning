@@ -35,6 +35,8 @@ check_tracks
 ```
 
 ### text_processing (MATLAB + Python):
+
+  Check text_processing_pipeline.sh
 This code implements the text processing pipeline as described in the paper [1].
 
 1. Download and setup (set up your classpath) StanfordCoreNLP https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
@@ -76,7 +78,7 @@ a. preprocess_all({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}):	(MATLAB) preprocesses th
 ```
 Go to the folder where your movies are saved, open a terminal and run:
 
-b. java  --add-modules java.se.ee -cp "../stanford-corenlp-full-2018-01-31/*" -Xmx3000m edu.stanford.nlp.pipeline.StanfordCoreNLP -enforceRequirements false -annotators tokenize,ssplit,pos,lemma,ner,depparse -filelist filelist1.txt -outputDirectory serialized_outputs/ -outputFormat serialized:  Executes all the necessary annotators in order to perform the dependency parsing on each document (ner is optional).
+b. java  --add-modules java.se.ee -cp "../stanford-corenlp-full-2018-01-31/*" -Xmx3000m edu.stanford.nlp.pipeline.StanfordCoreNLP -enforceRequirements false -annotators tokenize,ssplit,pos,lemma,depparse -filelist filelist1.txt -outputDirectory serialized_outputs/ -outputFormat serialized:  Executes all the necessary annotators in order to perform the dependency parsing on each document (Optionally you can add ner).
 
 Modify this movie list if necessary
 c. for i in BMI CRA DEP GLA LOR; do
@@ -85,20 +87,21 @@ done: Annotates the script with person labels according to the regular expressio
 ```
 
 ```
-d. python parse_xml: parses the xml output of CoreNLP (Our code is tested with Python 3.6.3)
+d. python parse_xml_all: parses the xml output of CoreNLP (Our code is tested with Python 3.6.3)
 e. labels_extractor_all({'BMI' , 'CRA', 'DEP', 'GLA', 'LOR'}) :(MATLAB) 	Extracts person labels from the CoreNLP annotation and creates short sentences for the sentence similarity algorithm
 f.  cd read_xml_script;
 fps_1=24.9997500025000;
 align_subs_script_all({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'},1,[fps_1 fps_1 fps_1 fps_1 fps_1]): (MATLAB) segments the scripts and performs the crude alignment between the script and the subtitles - the code was obtained from Dr. Bojanowski and got slightly modified
-g. python classify_verbs_slow.py: Implements various sentence similarity algorithms
-e. tidy_similarities({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}, 'wordnet'): (MATLAB) Post-processing of the similarity vectors - change the similarity method if necessary. The 'wordnet' method (hybrid LSA + wordnet [5]), is time consuming because it makes http requests to the author's online API.
+g. python classify_verbs_all.py: Implements various sentence similarity algorithms
+h. tidy_similarities({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}, 'wordnet'): (MATLAB) Post-processing of the similarity vectors - change the similarity method if necessary. The 'wordnet' method (hybrid LSA + wordnet [5]), is time consuming because it makes http requests to the author's online API.
+i. face_annotation({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'}) : (MATLAB) processing of the manual annotations to match the automatic annotations of the text
 ```
 
 ### multimodal_learning_weakly_supervised (MATLAB + mosek):
 
 
 ```
-learn_faces.m : modify the paths for script, faces, annotation, code extended from Dr. Bojanowski
+learn_faces.m : modify the paths for script, faces, annotation: run face_annotation, code extended from Dr. Bojanowski
 ```
 
 3)my-actor-action (MATLAB) : learning algorithms - based on the code used for Bojanowski et. al 2013

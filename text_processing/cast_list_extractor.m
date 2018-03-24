@@ -1,6 +1,5 @@
 function [cast_list_original,tags_regex,tags,classes]=cast_list_extractor(id)
 	global api_key
-	
 	credits=urlread(['https://api.themoviedb.org/3/movie/' num2str(id) '/credits?' api_key]);
 	credits=parse_json(credits);
 	for i=1:size(credits.cast,2)

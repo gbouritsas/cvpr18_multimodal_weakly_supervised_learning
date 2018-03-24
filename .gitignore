@@ -133,6 +133,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+do_not_push
+
 
 # End of https://www.gitignore.io/api/python
 
