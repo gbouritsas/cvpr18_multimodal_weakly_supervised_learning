@@ -64,12 +64,12 @@ This code implements the weakly supervised learning algorithm as described in th
 3. In order to run the experiments of the algorithm on the visual concept of faces run :
 
 ```
-learn_faces.m: (MATLAB)
+learn_faces: (MATLAB)
 ```
 
 4. In order to run the experiments of the algorithm on the visual concept of actions run :
 ```
-learn_actions.m (MATLAB)
+learn_actions: (MATLAB)
 ```
 
 5. A typical execution of the algorithm for custom experiments should be:
