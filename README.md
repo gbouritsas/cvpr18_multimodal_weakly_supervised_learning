@@ -41,7 +41,7 @@ This code implements the text processing pipeline as described in the paper [1].
 1. Download and setup (set up your classpath) StanfordCoreNLP https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
 2. Modify the global variable movies_folder in order to point to the folder where your movies are saved (MATLAB and Python)
 3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point in the files where your action categories are saved (MATLAB and Python). See 'Data' for more information. Also you can modify the sentence similarity method.
-4. Sign up to TMDB, obtain an api_key and add it to preprocess_all.m. For new movies you need to form new queries to the database.
+4. Sign up to TMDB https://www.themoviedb.org/, obtain an api_key and add it to preprocess_all.m. For new movies you need to form new queries to the database.
 5. We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
 6. The script files need to comply with the common screenplay format rules (in terms of indentation and capitalisation) in order to be properly segmented. The format is the following:
 
@@ -76,12 +76,12 @@ learn_actions.m (MATLAB)
 
 ```
 a. prepare_for_opt_{face,action}: prepares the matrices that participate in the optimization procedure
-b.	main: executes the optimization
+b. main: executes the optimization
 ```
 
 Data
 =====================================
-1. You can find the -necessary for the learning algorithm- outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) in . We also provide the ground truth of the example visual concepts.
+1. You can find the -necessary for the learning algorithm- outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) in . We also provide the ground truth of the examples.
 2. Our action categories can be found in the same link in the file manual_annotation/categories_ids_47.mat. An extended version of the categories is provided in manual_annotation/categories_ids.mat.
 
 
@@ -94,6 +94,3 @@ References
 [3] J. Sivic, M. Everingham and A. Zisserman. "Who are you?" : Learning person specific classifiers from video. CVPR 2009.
 
 [4] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic. Finding actors and actions in movies. ICCV 2013
-
-[5] L. Han, A. Kashyap, T. Finin, J. Mayfield, and J. Weese.
-Umbc ebiquity-core: Semantic textual similarity systems. *SEM, 2013
