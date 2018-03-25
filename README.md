@@ -1,7 +1,8 @@
 Description
+=====================================
 
 The implementation of the CVPR 2018 paper "Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques" [1]. We provide the end-to-end system of weakly supervised face recognition. In particular the system comprises of three components: 1) face pipeline, 2) script pipeline, 3) multimodal weakly supervised learning. The implementation of 1) and 3) builds on previous code from Dr. Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline and https://github.com/piotr-bojanowski/actor-action respectively). We also thank Dr. Bojanowski for the implementation of the Dynamic Time Warping algorithm for the script-subtitle alignment.
-=====================================
+
 Code
 =====================================
 ### face-pipeline (MATLAB) :
