@@ -1,9 +1,11 @@
 Description
+
+The implementation of the CVPR 2018 paper "Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques" [1]. We provide the end-to-end system of weakly supervised face recognition. In particular the system comprises of three components: 1) face pipeline, 2) script pipeline, 3) multimodal weakly supervised learning. The implementation of 1) and 3) builds on previous code from Dr. Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline and https://github.com/piotr-bojanowski/actor-action respectively). We also thank Dr. Bojanowski for the implementation of the Dynamic Time Warping algorithm for the script-subtitle alignment.
 =====================================
 Code
 =====================================
 ### face-pipeline (MATLAB) :
-This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline) and it is based on [2],[3] and [4]. The main modifications are:
+This code is based on [2],[3] and [4]. The main modifications are:
 
 - parallel implementation of the code
 - small modifications in the formation of the face tracks (detector score threshold, post-processing of face tracks)
@@ -13,8 +15,8 @@ This code is adapted from Piotr Bojanowski (https://github.com/piotr-bojanowski/
 Prior to running the code you will have to:
 
 1. Split each video into individual frames .
-2. Download VLFeat http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.21) .
-3. Download MatConvNet http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta25) .
+2. Download VLFeat: http://www.vlfeat.org/download.html (Our code is tested with VLFeat 0.9.21) .
+3. Download MatConvNet: http://www.vlfeat.org/matconvnet (Our code is tested with MatConvNet 1.0-beta25) .
 4. Modify the paths in the files main.m, main_vgg.m and main_kernels.m .
 
 The code for the extraction of the VGG descriptor is set to run on GPU. In case GPU is not available modify the main_vgg.m file as follows:
@@ -38,10 +40,10 @@ check_tracks
 
 This code implements the text processing pipeline as described in the paper [1].
 
-1. Download and setup (set up your classpath) StanfordCoreNLP https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
-2. Modify the global variable movies_folder in order to point to the folder where your movies are saved (MATLAB and Python)
-3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point in the files where your action categories are saved (MATLAB and Python). See 'Data' for more information. Also you can modify the sentence similarity method.
-4. Sign up to TMDB https://www.themoviedb.org/, obtain an api_key and add it to preprocess_all.m. For new movies you need to form new queries to the database.
+1. Download and setup (set up your classpath) StanfordCoreNLP: https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
+2. Modify the global variable movies_folder in order to point to the folder where your movies are saved (See text_processing README for more information).
+3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point in the files where your action categories are saved (See text_processing README and 'Data' section for more information). Also you can modify the sentence similarity method.
+4. Sign up to TMDB: https://www.themoviedb.org/, obtain an api_key and set the corresponding global variable (See text_processing README for more information). For new movies you need to form new queries to the database.
 5. We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
 6. The script files need to comply with the common screenplay format rules (in terms of indentation and capitalisation) in order to be properly segmented. The format is the following:
 
@@ -53,11 +55,11 @@ Description
 ```
 add example here
 
-You can find the commands for the entire text processing pipeline in the README of the text processing.
+You can find the commands for the entire text processing pipeline in the text_processing README.
 
-### multimodal_learning_weakly_supervised (MATLAB + mosek):
+### multimodal_weakly_supervised_learning (MATLAB + mosek):
 
-This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments. Some files are obtained from Dr. Bojanowski https://github.com/piotr-bojanowski/actor-action.
+This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments.
 
 1. Download and setup MOSEK for MATLAB https://docs.mosek.com/8.1/toolbox/install-interface.html (Our code is tested with MOSEK 8.1)
 2. Modify the paths in learn_faces.m, learn_actions.m similarly to the previous components of the system.
@@ -72,16 +74,16 @@ learn_faces: (MATLAB)
 learn_actions: (MATLAB)
 ```
 
-5. A typical execution of the algorithm for custom experiments should be:
+5. In learn_{faces,actions}.m you can modify the hyperparameters of the optimization algorithm, as well as other parameters involved in the method, in order to run custom experiments. A typical execution of the algorithm for custom experiments should be:
 
 ```
-a. prepare_for_opt_{face,action}: prepares the matrices that participate in the optimization procedure
+a. prepare_for_opt_{face,action}(parameters): prepares the matrices that participate in the optimization procedure. See learn_{faces,actions}.m for more details
 b. main: executes the optimization
 ```
 
 Data
 =====================================
-1. You can find the -necessary for the learning algorithm- outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) in . We also provide the ground truth of the examples.
+1. You can find the - necessary for the learning algorithm - outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) in . We also provide the ground truth of the examples.
 2. Our action categories can be found in the same link in the file manual_annotation/categories_ids_47.mat. An extended version of the categories is provided in manual_annotation/categories_ids.mat.
 
 

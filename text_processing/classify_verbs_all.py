@@ -14,8 +14,25 @@ from gensim.scripts.glove2word2vec import glove2word2vec
 sys.path.insert(0, 'word_embeddings/sent2vec/')
 #from get_sentence_embeddings_from_pre_trained_models import*
 
+def classify_verbs_all(movies, method):
+    mat = scio.loadmat(categories_folder + categories_small_file,struct_as_record=0)    
+    if method=='word2vec':
+        # adjust word2vec path
+        word2vec_path = '../word_embeddings/word2vec/GoogleNews-vectors-negative300.bin'
+        model = gensim.models.KeyedVectors.load_word2vec_format('../word_embeddings/word2vec/GoogleNews-vectors-negative300.bin', binary=True)
+        index2word_set = set(model.index2word)
+    if method=='glove':
+        # adjust glove path
+        gloveFile='../word_embeddings/glove.6B/glove.6B.300d.txt'
+        model=loadGloveModel(gloveFile)
+        index2word_set = set(model.index2word)
+    if method=='wordnet':
+        model=[]
+        index2word_set=[]
+    classify_verbs(movies,method,model,index2word_set,mat)
 
-def classify_verbs(movies,method,model,index2word_set):
+
+def classify_verbs(movies,method,model,index2word_set,mat):
 
     for movie_name in movies:
         input_folder= movies_folder + movie_name + '/results_script'
@@ -55,42 +72,20 @@ def loadGloveModel(gloveFile):
     print('Done.')
     return model;
 # %%
-
-movies = sys.argv[1:]
+ 
 # Modify this path:
-global categories_folder
-global categories_small_file
-categories_folder='../manual_annotation/'
-categories_small_file='categories_ids_47.mat'
-mat = scio.loadmat(categories_folder + categories_small_file,struct_as_record=0)
-
+global movies_folder; movies_folder = '/Users/giorgosmpouritsas/Documents/movies/'
+global movies; movies = ['BMI', 'CRA', 'DEP', 'GLA', 'LOR']
+    
+# Modify this path:
+global categories_folder; categories_folder='../manual_annotation/'
+global categories_small_file; categories_small_file='categories_ids_47.mat'
 method='wordnet'
 
-global movies_folder
-# Modify this path:
-movies_folder = '/Users/giorgosmpouritsas/Documents/movies/'
-#movies=['BMI']
-#movies=['CRA']
-#movies=['DEP']
-#movies=['GLA']
-movies=['LOR']
+#classify_verbs_all(movies, method)
 
-if method=='word2vec':
-    # adjust word2vec path
-    word2vec_path = '../word_embeddings/word2vec/GoogleNews-vectors-negative300.bin'
-    model = gensim.models.KeyedVectors.load_word2vec_format('../word_embeddings/word2vec/GoogleNews-vectors-negative300.bin', binary=True)
-    index2word_set = set(model.index2word)
-if method=='glove':
-    # adjust glove path
-    gloveFile='../word_embeddings/glove.6B/glove.6B.300d.txt'
-    model=loadGloveModel(gloveFile)
-    index2word_set = set(model.index2word)
-if method=='wordnet':
-    model=[]
-    index2word_set=[]
 
-# %%
-classify_verbs(movies,method,model,index2word_set)
+
 
 
 #if __name__ == "__main__":

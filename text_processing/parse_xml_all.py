@@ -10,7 +10,7 @@ import scipy.io as scio
 movies = sys.argv[1:]
 
 
-def parse_xml(movies):
+def parse_xml_all(movies):
 	for movie_name in movies:
 		input_folder = movies_folder + movie_name + '/results_script/'
 		result_folder = movies_folder + movie_name + '/results_script/'
@@ -24,4 +24,4 @@ global movies_folder
 movies_folder = '/Users/giorgosmpouritsas/Documents/movies/'
 # Modify this list if necessary
 movies=['BMI','CRA','DEP','GLA','LOR']
-parse_xml(movies)
+#parse_xml_all(movies)
