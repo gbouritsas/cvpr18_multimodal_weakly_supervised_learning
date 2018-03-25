@@ -43,9 +43,11 @@ kernel={'linear_c3d','chisquared_c3d','linear_trajectories','chisquared_trajecto
 % Here you can add other action localization methods
 localization={'manual localization', 'facetrack localization'};
 
-%
-label_method={'maximum','weighted_instances','weighted_slacks'};
+% Single or Probabilistic Label MIL
+label_method={'maximum','probabilities'};
+% Discard similarities below this thresold
 similarity_threshold=0:0.1:1;
+% Different membership functions and hyperparameters \alpha, k and \epsilon
 membership_function={'linear','step','concave_pchip','convex_pchip','normalize','gamma_sigmoid','gamma_linear','gamma_rational','gamma_s','gamma_cubic','gamma_pchip'};
 membership_threshold={1,0:0.1:1,[0.01 0.1:0.1:0.8],[0.2:0.1:0.9 0.99],1,0:0.1:1,0:0.1:1,0:0.1:1,0:0.1:1,0:0.1:1,0:0.1:1};
 membership_k={0,0,0,0,0,5:5:30,0,1000:2000:10000,0:0.1:1,0:0.1:1,0:0.1:1};
@@ -135,7 +137,7 @@ extend=0:10:150;
 % for k=2:2:10
 %     for j=1:length(movies)
 %         movie_name=movies{j};   
-%         return_code=prepare_for_opt_action({movie_name}, 0.4, label_method(3),...
+%         return_code=prepare_for_opt_action({movie_name}, 0.4, label_method(2),...
 %                     membership_function(2), membership_threshold{2}(1), 0,...
 %                     k, extend(1), kernel(1),localization(1),fps,fps_weird);
 %         if return_code(1)==0
@@ -185,7 +187,7 @@ hwait=waitbar(0,'Please wait...');
 for k=2:2:10
     for j=1:length(movies)
         movie_name=movies{j};   
-        return_code=prepare_for_opt_action({movie_name}, 0.4, label_method(3),...
+        return_code=prepare_for_opt_action({movie_name}, 0.4, label_method(2),...
                     membership_function(8),membership_threshold{8}(2),membership_k{8}(3),...
                     k, extend(11), kernel(1), localization(1), fps, fps_weird);
         if return_code(1)==0

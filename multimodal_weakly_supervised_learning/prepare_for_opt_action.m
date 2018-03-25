@@ -260,6 +260,8 @@ for movie_name=movies
                 S(i,setdiff(1:size(S,2),mind))=0;
             end
         end
+    elseif strcmp(label_method,'probabilities')
+        S=S;
     end
     
     %% The following are not mentioned in the paper

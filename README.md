@@ -1,7 +1,10 @@
 Description
 =====================================
+The implementation of the CVPR 2018 paper "Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques" [1].
 
-The implementation of the CVPR 2018 paper "Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques" [1]. We provide the end-to-end system of weakly supervised face recognition. In particular the system comprises of three components: 1) face pipeline, 2) script pipeline, 3) multimodal weakly supervised learning. The implementation of 1) and 3) builds on previous code from Dr. Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline and https://github.com/piotr-bojanowski/actor-action respectively). We also thank Dr. Bojanowski for the implementation of the Dynamic Time Warping algorithm for the script-subtitle alignment.
+We provide the end-to-end system of weakly supervised face recognition. In particular the system comprises of three components: 1) face pipeline, 2) script pipeline, 3) multimodal weakly supervised learning. The implementation of 1) and 3) builds on previous code from Dr. Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline and https://github.com/piotr-bojanowski/actor-action respectively). We also thank Dr. Bojanowski for the implementation of the Dynamic Time Warping algorithm for the script-subtitle alignment.
+
+We also provide the system of weakly supervised action recognition, using pre-computed action features.
 
 Code
 =====================================
@@ -78,7 +81,7 @@ learn_actions: (MATLAB)
 5. In learn_{faces,actions}.m you can modify the hyperparameters of the optimization algorithm, as well as other parameters involved in the method, in order to run custom experiments. A typical execution of the algorithm for custom experiments should be:
 
 ```
-a. prepare_for_opt_{face,action}(parameters): prepares the matrices that participate in the optimization procedure. See learn_{faces,actions}.m for more details
+a. prepare_for_opt_{face,action}(parameters): prepares the matrices that participate in the optimization procedure. See learn_{faces,actions}.m for more details regarding the parameters
 b. main: executes the optimization
 ```
 
