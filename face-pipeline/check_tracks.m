@@ -1,18 +1,15 @@
-% movie_name='CRA';
-% movie_name='DEP';
-% movie_name='LOR';
-% movie_name='GLA';
-
+% Moidfy this according to each movie
 movie_name='BMI';
 % Paths need to be modified
-dump_dir = ['../../../movies/' movie_name '/frames/'];
-result_dir  = ['../../../tainies/' movie_name '/results/'];
+dump_dir = ['/Data/gbouritsas_thesis/movies/' movie_name '/frames/'];
+result_dir  = ['/Data/gbouritsas_thesis/movies/' movie_name '/results_face'];
 
 
 dump_string = [dump_dir '/image-%06d.png'];
 facedetfname    = 'facedets.mat';
 facedetpath     = fullfile(result_dir, facedetfname);
 load(facedetpath);
+
 track = cat(1, facedets.track);
 [a,b]=sort(track);
 facedets=facedets(b);

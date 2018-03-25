@@ -34,15 +34,16 @@ for movie_name=movies
         load(fullfile(input_annotation_folder,'face.mat'));
         face=cell2mat(face(:,2));
     end
+
     %set of person classes
     load(fullfile([input_script_folder '/' movie_name '_init_person_labels.mat']));
     %save the person set to inspect the results
     [uc,iuc,~]=unique(cat(1,[],person_names.classes));
     up=cat(1,[],{person_names(iuc).tags});
     person_text_set=struct('names',up','ids',num2cell(uc));
-    save(fullfile(input_script_folder,'person_text_set.mat'),'person_text_set');
+    save(fullfile(input_script_folder,[movie_name '_person_text_set.mat']),'person_text_set');
     %
-
+    
     %1)
     Ka=double(Kav);
     %2)
