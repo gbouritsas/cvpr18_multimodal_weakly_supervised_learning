@@ -29,7 +29,7 @@ c. main_vgg: extracts the VGG-face representation
 d. main_kernels: computes the kernels (both from VGG and SIFT).
 ```
 
-To manually annotate face tracks run:
+To manually annotate face tracks run (the paths need to be modified here as well):
 ```
 check_tracks
 ```
@@ -40,7 +40,7 @@ This code implements the text processing pipeline as described in the paper [1].
 
 1. Download and setup (set up your classpath) StanfordCoreNLP https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
 2. Modify the global variable movies_folder in order to point to the folder where your movies are saved (MATLAB and Python)
-3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point in the files where your action categories are saved (MATLAB and Python). We provide our action categories in categories_ids_47.mat and in an extended version categories_ids.mat. Also you can modify the sentence similarity method.
+3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point in the files where your action categories are saved (MATLAB and Python). See 'Data' for more information. Also you can modify the sentence similarity method.
 4. Sign up to TMDB, obtain an api_key and add it to preprocess_all.m. For new movies you need to form new queries to the database.
 5. We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
 6. The script files need to comply with the common screenplay format rules (in terms of indentation and capitalisation) in order to be properly segmented. The format is the following:
@@ -59,7 +59,7 @@ You can find the commands for the entire text processing pipeline in the README 
 
 This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments. Some files are obtained from Dr. Bojanowski https://github.com/piotr-bojanowski/actor-action.
 
-1. Download and setup MOSEK for MATLAB https://docs.mosek.com/8.1/toolbox/install-interface.html(Our code is tested with MOSEK 8.1)
+1. Download and setup MOSEK for MATLAB https://docs.mosek.com/8.1/toolbox/install-interface.html (Our code is tested with MOSEK 8.1)
 2. Modify the paths in learn_faces.m, learn_actions.m similarly to the previous components of the system.
 3. In order to run the experiments of the algorithm on the visual concept of faces run :
 
@@ -75,12 +75,15 @@ learn_actions.m (MATLAB)
 5. A typical execution of the algorithm for custom experiments should be:
 
 ```
-	a. prepare_for_opt_{face,action} :	prepares the matrices that participate in the optimization procedure
-	b.	main : executes the optimization
+a. prepare_for_opt_{face,action}: prepares the matrices that participate in the optimization procedure
+b.	main: executes the optimization
 ```
 
 Data
 =====================================
+1. You can find the -necessary for the learning algorithm- outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) in . We also provide the ground truth of the example visual concepts.
+2. Our action categories can be found in the same link in the file manual_annotation/categories_ids_47.mat. An extended version of the categories is provided in manual_annotation/categories_ids.mat.
+
 
 References
 =====================================

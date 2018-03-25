@@ -4,7 +4,7 @@
 global movies_folder;
 movies_folder = '/Users/giorgosmpouritsas/Documents/movies/';
 global api_key;
-api_key='api_key=5f63aa856dfa7e1bb5a5ec19cb408f1c';
+api_key='api_key='';
 preprocess_all({'BMI', 'CRA', 'DEP', 'GLA', 'LOR'});
 ```
 
