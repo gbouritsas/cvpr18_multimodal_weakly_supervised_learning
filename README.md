@@ -36,7 +36,6 @@ check_tracks
 
 ### text_processing (MATLAB + Python):
 
-  Check text_processing_pipeline.sh
 This code implements the text processing pipeline as described in the paper [1].
 
 1. Download and setup (set up your classpath) StanfordCoreNLP https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
@@ -58,29 +57,32 @@ You can find the commands for the entire text processing pipeline in the README 
 
 ### multimodal_learning_weakly_supervised (MATLAB + mosek):
 
+This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments. Some files are obtained from Dr. Bojanowski https://github.com/piotr-bojanowski/actor-action.
+
+1. Download and setup MOSEK for MATLAB https://docs.mosek.com/8.1/toolbox/install-interface.html(Our code is tested with MOSEK 8.1)
+2. Modify the paths in learn_faces.m, learn_actions.m similarly to the previous components of the system.
+3. In order to run the experiments of the algorithm on the visual concept of faces run :
 
 ```
-learn_faces.m : modify the paths for script, faces, annotation: run face_annotation, code extended from Dr. Bojanowski
-
-learn_actions.m
+learn_faces.m: (MATLAB)
 ```
 
-3)my-actor-action (MATLAB) : learning algorithms - based on the code used for Bojanowski et. al 2013
-	typical execution:
-	b) 	prepare_for_opt* :	prepares the matrices that participate in the optimization procedure
-							* ='' ->action recognition
-							* =_face ->face recognition
-							* =_face_prior ->action recognition using knowledge from face
-							* =_prior -> action recognition with prior knowledge
-	c)	main (needs MOSEK)
+4. In order to run the experiments of the algorithm on the visual concept of actions run :
+```
+learn_actions.m (MATLAB)
+```
 
-The scripts listed below indicate the usage of the prepare_for_opt* functions and the values of the global variables for the optimization
-multiple_experiments_face : variety of experiments on face -
-multiple_experiments_action : variety of experiments on action -
-optimize_actor_action :		variety of experiments on action using knowledge from face
-optimize_with_prior : variety of experiments on action using prior knowledge from a pre-trained classifier
-------------------------------------------------------------------------------------------------------------------
-								DATA
+5. A typical execution of the algorithm for custom experiments should be:
+
+```
+	a. prepare_for_opt_{face,action} :	prepares the matrices that participate in the optimization procedure
+	b.	main : executes the optimization
+```
+
+=====================================
+Data
+=====================================
+
 1)manual_annotation_manipulation : extraction of the annotated labels and store as matlab structures
 References
 =====================================
