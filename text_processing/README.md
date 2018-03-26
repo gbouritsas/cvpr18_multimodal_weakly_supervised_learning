@@ -1,4 +1,4 @@
-Prior to running the commands below you should set some global variables in order to point in the correct files. This needs to be done both in MATLAB and Python:
+Prior to running the commands below you should set some global variables in order to point to the correct files. This needs to be done both in MATLAB and Python:
 ```
 global movies_folder; movies_folder='/Users/giorgosmpouritsas/Documents/movies/';
 global api_key; api_key='api_key=';

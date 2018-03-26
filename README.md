@@ -57,7 +57,18 @@ SCENE
 	Monologue
 Description
 ```
-add example here
+For example:
+```
+EXT. FOOTHILLS OF WHITE MOUNTAINS - DAY (SCENE)
+
+ANGLE ON: SHADOWFAX powers along the COUNTRYSIDE.
+ANGLE ON: PIPPIN, huddled in front of GANDALF, the WIND
+sailing through his hair. (Description)
+
+                      GANDALF (SPEAKER)
+           We have just passed into the realm of
+           Gondor! (Monologue)
+```
 
 You can find the commands for the entire text processing pipeline in the text_processing README.
 
