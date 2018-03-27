@@ -93,7 +93,7 @@ learn_actions: (MATLAB)
 
 ```
 a. prepare_for_opt_{face,action}(parameters): prepares the matrices that participate in the optimization procedure. See learn_{faces,actions}.m for more details regarding the parameters
-b. main: executes the optimization
+b. result = main (movie_name, coordinate): executes the optimization, coordinate can be either 'face' or 'action'
 ```
 
 Data

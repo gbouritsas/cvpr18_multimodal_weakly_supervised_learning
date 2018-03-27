@@ -34,7 +34,7 @@ removed_categories = {'other'...
 for movie_name=movies
     movie_name=cell2mat(movie_name);
     %Inputs...
-    input_script_folder=fullfile([movies_folder movie_name '/results_script']);
+    input_script_folder=fullfile([movies_folder movie_name '/results_script/backup']);
     input_face_folder=fullfile([movies_folder movie_name '/results_face']);
     
     result_folder=fullfile([movies_folder movie_name '/results_optimization']);
@@ -269,7 +269,7 @@ for movie_name=movies
     % classifier
     probs=zeros(size(Ka,1),size(S,2));
     % These variables can be used to incorporate information from the face
-    % recognition system
+    % recognition system - ignore this
     B= ones(size(Ka,1),1);
     T= 1;
     S1=ones(size(A,1),1);

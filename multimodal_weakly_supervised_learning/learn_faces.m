@@ -7,6 +7,7 @@ global categories_folder;categories_folder='../manual_annotation';
 global categories_extended_file;categories_extended_file='/categories_ids.mat';
 global categories_small_file;categories_small_file='/categories_ids_47.mat';
 global mosek_path; mosek_path = '~/Documents/mosek/8/toolbox/r2014aom';
+global cvx_path; cvx_path = '~/Documents/cvx/cvx_setup.m';
 
 % approximate and exact fps: ignore this step
 fps=25;fps_weird=24.9997500025000;
@@ -43,8 +44,12 @@ extend=0:10:150;
 
 
 %%
-hwait=waitbar(0,'Please wait...');
 accuracy_text=zeros(1,5);
+
+multiWaitbar( 'CloseAll' );
+multiWaitbar( 'methods', 0 );
+multiWaitbar( 'movies', 0, 'Color', 'b' );
+
 optflag='feas';
 
 for j=1:length(movies)
@@ -54,14 +59,14 @@ for j=1:length(movies)
     if return_code(1)==0
         continue;
     end
-    main;
+    result = main (movie_name, coordinate);
     accuracy_text(1,j)=result{1,1}.ap;
     
-    waitbar(j/length(movies))
+    multiWaitbar( 'movies', 'Value', j/5 );
 end
-close(hwait)
+multiWaitbar( 'movies', 'Reset' );
+multiWaitbar( 'methods', 'Value', 1/3 );
 
-hwait=waitbar(0,'Please wait...');
 accuracy=zeros(4,5);
 optflag='min';
 
@@ -72,33 +77,34 @@ for j=1:length(movies)
     if return_code(1)==0
         continue;
     end
-    main;
+    result = main (movie_name, coordinate);
     accuracy(1,j)=result{1,1}.ap;
 
     return_code=prepare_for_opt_face({movie_name},membership_function(8),membership_threshold{8}(3),membership_k{8}(3), extend(1),kernel(1),fps,fps_weird);
     if return_code(1)==0
         continue;
     end
-    main;
+    result = main (movie_name, coordinate);
     accuracy(2,j)=result{1,1}.ap;    
 
     return_code=prepare_for_opt_face({movie_name},membership_function(2),membership_threshold{2}(1),0, extend(1),kernel(3),fps,fps_weird);
     if return_code(1)==0
         continue;
     end
-    main;
+    result = main (movie_name, coordinate);
     accuracy(3,j)=result{1,1}.ap;
     
     return_code=prepare_for_opt_face({movie_name},membership_function(8),membership_threshold{8}(3),membership_k{8}(3), extend(1),kernel(3),fps,fps_weird);
     if return_code(1)==0
         continue;
     end
-    main;
+    result = main (movie_name, coordinate);
     accuracy(4,j)=result{1,1}.ap;
     
-    waitbar(j/length(movies))
+    multiWaitbar( 'movies', 'Value', j/5 );
 end
-close(hwait)
+multiWaitbar( 'movies', 'Reset' );
+multiWaitbar( 'methods', 'Value', 2/3 );
 
 accuracy=[accuracy_text;accuracy];
 
@@ -114,22 +120,24 @@ bg_concept=true;
 external_background=false;
 optflag='min';
 
-hwait=waitbar(0,'Please wait...');
 for j=1:length(movies)
     movie_name=movies{j};
     
     [return_code,~]=prepare_for_opt_face({movie_name},membership_function{2},membership_threshold{2}(1),0,extend(1),kernel{3},fps,fps_weird);
-    main;
+    result = main (movie_name, coordinate);
     accuracy(6,j)=result{1,1}.ap;
     accuracy(8,j)=result{1,3}.ap;
 
     [return_code,~]=prepare_for_opt_face({movie_name},membership_function{8},membership_threshold{8}(3),membership_k{8}(3),extend(1),kernel{3},fps,fps_weird);
-    main;
+    result = main (movie_name, coordinate);
     accuracy(7,j)=result{1,1}.ap;
     accuracy(9,j)=result{1,3}.ap;
-    waitbar(j/length(movies))
+    multiWaitbar( 'movies', 'Value', j/5 );
 end   
-close(hwait)
+multiWaitbar( 'movies', 'Reset' );
+multiWaitbar( 'methods', 'Value', 3/3 );
+multiWaitbar( 'movies', 'Close' );
+multiWaitbar( 'methods', 'Close' );
 
 accuracy_fg_bg=zeros(4,8);
 accuracy_fg_bg(:,3)=mean(accuracy(6:9,[1,2]),2);
