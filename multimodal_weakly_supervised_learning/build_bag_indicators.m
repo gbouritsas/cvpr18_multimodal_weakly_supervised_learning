@@ -38,7 +38,7 @@ S=S(nonempty,:);
 
 % remove duplicate constraints even if they have different slack variable
 % weights. The final weight is computed below as the probability of the
-% union and then passed through a non-linearity.
+% union passed through an increasing mapping function.
 
 A_S=[A S];
 [~,ia,ic]=unique(A_S,'stable','rows');
@@ -52,8 +52,6 @@ if strcmp(weight_choice,'weighted')==1
 elseif strcmp(weight_choice,'equal')==1
     weights=zeros(length(ia),1);
     for i=1:length(ia)
-        weights(i)=1;
-        %weights(i)=max(label_weights(ic==i));
         
         % compute union probability when multiple sentences have non zero
         % probability of belonging to the same action class and are aligned
@@ -67,14 +65,32 @@ elseif strcmp(weight_choice,'equal')==1
             weights(i) = weights(i) +(-1)^(j-1)* sum(prod(nchoosek(label_weights(ic==i),j),2));
         end
         
-        % applying non-linearity to probabilities
-        % mem_k=100;thres=0;
-        % weights=(mem_k*(weights-thres).^2)./(1+mem_k*(weights-thres).^2);
     end
-    %weights=smooth(weights);
-    %weights_new(weights<0.2)=0;
-    %weights_new(weights>=0.2)=(1000*(weights(weights>=0.2)-0.2).^2)./(1+1000*(weights(weights>=0.2)-0.2).^2);
-    %weights=weights_new;
+    % applying mapping function f to probabilities
+    map_f= 'gamma_rational';
+    % 1) gamma rational
+    if strcmp(map_f,'gamma_rational')
+        f_k=100;thres=0;
+        weights_new=(f_k*(weights-thres).^2)./(1+f_k*(weights-thres).^2);
+        weights_new(weights<thres) = 0;
+        weights = weights_new;
+    % 2) linear
+    elseif strcmp(map_f,'linear')
+        weights = weights;
+    % 3) gamma rational shifted
+    elseif strcmp(map_f,'gamma_rational_shifted')
+        f_k=100;thres=0; map_1 = 1; shift = map_1 - (f_k*(1-thres)^2)/(1+f_k*(1-thres)^2);
+        weights_new=(f_k*(weights-thres).^2)./(1+f_k*(weights-thres).^2)+ shift;
+        weights_new(weights<thres) = 0;
+        weights = weights_new;
+    % 4) candidate labels: In the COGNIMUSE dataset candidate labels provide the optimal
+    % results - similar to those of the gamma rational mapping function. This can be interpreted by the fact many labeled action
+    % tracks do not appear in the text and by the fact that the semantic
+    % sinmilarity algorithm provides noisy probabilistc labels, hence noisy
+    % "oracles" for the optimization algorithm
+    elseif strcmp(map_f, 'candidate_labels')
+        weights = ones(length(weights));
+    end
 end
 
 
@@ -96,20 +112,6 @@ for i = 1:I
     B_ind{i}(:) = S(i,:)';
 
 end
-
-
-
-% [temp,a1,a2]=uniquecell(cellfun(@(x,y,z) [x; y;z],A_ind,B_ind,mat2cell(label_weights,ones(1,size(label_weights,1))),'UniformOutput',false));
-% freq=tabulate(a2);
-% B_ind=cellfun(@(x) x(length(A_ind{1})+1:end-1),temp,'UniformOutput',false);
-% A_ind=cellfun(@(x) x(1:length(A_ind{1})),temp,'UniformOutput',false);
-% label_weights=cellfun(@(x) x(end),temp,'UniformOutput',false);
-% label_weights=cell2mat(label_weights);
-%
-% weights=label_weights.*freq(:,2);
-% weights=label_weights;
-
-
 
 
 end

@@ -1,4 +1,4 @@
-function [ A, blc, buc ] = get_mosek_A(n,P, IA, IB, B, alpha,weights)
+function [ A, blc, buc ] = get_mosek_A(n,P, IA, IB, B, alpha)
 
 
 
@@ -33,7 +33,7 @@ A = sparse(A);
 
 
 
-blc = [ones(n, 1); alpha*weights.*ones(length(IB), 1)];
+blc = [ones(n, 1); alpha*ones(length(IB), 1)];
 buc = [ones(n, 1); inf(length(IB), 1)];
 
 Bs = sparse(B);
