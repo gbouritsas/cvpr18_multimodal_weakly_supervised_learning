@@ -58,8 +58,8 @@ elseif strcmp(params.opt_flag, 'MOSEK_NORM') % EQUIVALENT NORM WITH MOSEK (FASTE
     
 	%A       = build_A(Ka, lambda);
     A = build_norm(Ka, lambda);
-    [prob.a, prob.blc, prob.buc]            = get_mosek_A(n, P, A_ind, B_ind, A, alpha);
-    [prob.qosubi, prob.qosubj, prob.qoval]  = get_mosek_Q(n,P, nConst, kapa,weights);
+    [prob.a, prob.blc, prob.buc]            = get_mosek_A(n, P, A_ind, B_ind, A, alpha,ones(length(weights),1)); %weights
+    [prob.qosubi, prob.qosubj, prob.qoval]  = get_mosek_Q(n,P, nConst, kapa, ones(length(weights),1));%ones(length(weights),1)
     [prob.blx]                              = get_mosek_lx(n, P, nConst,probs);
     %[prob.c]                                = get_mosek_c(n, P, nConst,probs);
     

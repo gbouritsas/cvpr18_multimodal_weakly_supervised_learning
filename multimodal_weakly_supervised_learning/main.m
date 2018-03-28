@@ -1,11 +1,5 @@
 function result = main(movie_name, coordinate)
 
-    % path to the mosek licence folder
-    %mosek_license = 'C:\Users\giorgos\mosek\';
-    global mosek_path; addpath(mosek_path);
-    global cvx_path; run(cvx_path);
-
-   
     global movies_folder
     datapath = [movies_folder movie_name '/results_optimization/data_new_experiment.mat'];
     load(datapath);

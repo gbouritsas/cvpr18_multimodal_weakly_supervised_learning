@@ -6,7 +6,8 @@ global movies_folder;movies_folder = '../movies/';
 global categories_folder;categories_folder='../manual_annotation';
 global categories_extended_file;categories_extended_file='/categories_ids.mat';
 global categories_small_file;categories_small_file='/categories_ids_47.mat';
-global mosek_path; mosek_path = '~/Documents/mosek/8/toolbox/r2014aom';
+global mosek_path; mosek_path = '~/Documents/mosek/8/toolbox/r2014aom'; addpath(mosek_path);
+global cvx_path; cvx_path = '~/Documents/cvx/cvx_setup.m'; run(cvx_path);
 
 % approximate and exact fps: ignore this step
 fps=25;fps_weird=24.9997500025000;
@@ -230,3 +231,6 @@ multiWaitbar( 'methods', 'Value', 6/6 );
 multiWaitbar( 'classes', 'Close' );
 multiWaitbar( 'movies', 'Close' );
 multiWaitbar( 'methods', 'Close' );
+
+accuracy_test=mean(accuracy(:,:,[3,4,5]),3);
+accuracy_dev=mean(accuracy(:,:,[1,2]),3);

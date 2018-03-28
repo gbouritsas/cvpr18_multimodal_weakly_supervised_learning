@@ -76,8 +76,8 @@ You can find the commands for the entire text processing pipeline in the text_pr
 
 This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments.
 
-1. Download and setup MOSEK for MATLAB: https://docs.mosek.com/8.1/toolbox/install-interface.html (Our code is tested with MOSEK 8.1). This is essential for all the optimization algorithms.
-2. Download and setup CVX: http://cvxr.com/cvx/download/ (Our code is tested with CVX 2.1). This is essential for the feasibility problem, i.e satisfying the constraints that the text imposes (see [1] for details).
+1. Download and setup MOSEK for MATLAB: https://docs.mosek.com/8.1/toolbox/install-interface.html (Our code is tested with MOSEK 8.1). This is essential for all the optimization algorithms. See https://docs.mosek.com/8.1/toolbox/install-interface.html for instructions.
+2. Download and setup CVX: http://cvxr.com/cvx/download/ (Our code is tested with CVX 2.1). This is essential for the feasibility problem, i.e satisfying the constraints that the text imposes (see [1] for details). See http://web.cvxr.com/cvx/doc/install.html.
 3. Modify the paths in learn_faces.m, learn_actions.m similarly to the previous components of the system. Additionally, modify the global variables mosek_path and cvx_path that point to the external packages.
 4. In order to run the experiments of the algorithm on the visual concept of faces run :
 
