@@ -67,7 +67,7 @@ elseif strcmp(weight_choice,'equal')==1
         
     end
     % applying mapping function f to probabilities
-    map_f= 'gamma_rational';
+    map_f= 'gamma_sigmoid';
     % 1) gamma rational
     if strcmp(map_f,'gamma_rational')
         f_k=100;thres=0;
@@ -90,6 +90,16 @@ elseif strcmp(weight_choice,'equal')==1
     % "oracles" for the optimization algorithm
     elseif strcmp(map_f, 'candidate_labels')
         weights = ones(length(weights));
+    elseif strcmp(map_f,'gamma_sigmoid')
+        f_k=10;thres=0.05;
+        weights=sigmf(weights,[f_k/thres,thres]);
+    elseif strcmp(map_f,'step')
+        thres = 0.1;
+        if thres==1
+            weights=weights>=membership_thres;
+        else
+            weights=weights>membership_thres;
+        end
     end
 end
 
