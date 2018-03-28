@@ -66,32 +66,30 @@ elseif strcmp(weight_choice,'equal')==1
         end
         
     end
-    % applying mapping function f to probabilities
-    map_f= 'gamma_sigmoid';
-    % 1) gamma rational
+    % applying mapping function f to probabilities. 
+    map_f= 'gamma_rational';
+    
     if strcmp(map_f,'gamma_rational')
-        f_k=100;thres=0;
+        f_k=1000;thres=0;
         weights_new=(f_k*(weights-thres).^2)./(1+f_k*(weights-thres).^2);
         weights_new(weights<thres) = 0;
         weights = weights_new;
-    % 2) linear
     elseif strcmp(map_f,'linear')
         weights = weights;
-    % 3) gamma rational shifted
     elseif strcmp(map_f,'gamma_rational_shifted')
-        f_k=100;thres=0; map_1 = 1; shift = map_1 - (f_k*(1-thres)^2)/(1+f_k*(1-thres)^2);
+        f_k=1000;thres=0; map_1 = 1; shift = map_1 - (f_k*(1-thres)^2)/(1+f_k*(1-thres)^2);
         weights_new=(f_k*(weights-thres).^2)./(1+f_k*(weights-thres).^2)+ shift;
         weights_new(weights<thres) = 0;
         weights = weights_new;
-    % 4) candidate labels: In the COGNIMUSE dataset candidate labels provide the optimal
+    % 4) candidate labels: In the COGNIMUSE dataset candidate labels provides near optimal
     % results - similar to those of the gamma rational mapping function. This can be interpreted by the fact many labeled action
     % tracks do not appear in the text and by the fact that the semantic
-    % sinmilarity algorithm provides noisy probabilistc labels, hence noisy
+    % similarity algorithm provides noisy probabilistc labels, hence noisy
     % "oracles" for the optimization algorithm
     elseif strcmp(map_f, 'candidate_labels')
-        weights = ones(length(weights));
+        weights = ones(length(weights),1);
     elseif strcmp(map_f,'gamma_sigmoid')
-        f_k=10;thres=0.05;
+        f_k=10;thres=0.1;
         weights=sigmf(weights,[f_k/thres,thres]);
     elseif strcmp(map_f,'step')
         thres = 0.1;

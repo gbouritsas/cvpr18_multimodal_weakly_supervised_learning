@@ -45,6 +45,12 @@ extend=0:10:150;
 
 
 %%
+% A few results in the paper might differ. The reason is the following:
+% The Text + MIL method might have various optimal points.
+% Contrary to the action recognition task, there is no chance of absence of
+% constraints, because we have prior knowledge of the person set by obtaining
+% the cast list.
+
 accuracy_text=zeros(1,5);
 
 multiWaitbar( 'CloseAll' );

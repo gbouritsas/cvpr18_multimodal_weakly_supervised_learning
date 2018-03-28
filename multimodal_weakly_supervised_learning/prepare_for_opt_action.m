@@ -34,7 +34,7 @@ removed_categories = {'other'...
 for movie_name=movies
     movie_name=cell2mat(movie_name);
     %Inputs...
-    input_script_folder=fullfile([movies_folder movie_name '/results_script/backup']);
+    input_script_folder=fullfile([movies_folder movie_name '/results_script']);
     input_face_folder=fullfile([movies_folder movie_name '/results_face']);
     
     result_folder=fullfile([movies_folder movie_name '/results_optimization']);

@@ -93,7 +93,7 @@ learn_actions: (MATLAB)
 5. In learn_{faces,actions}.m you can modify the hyperparameters of the optimization algorithm, as well as other parameters involved in the method, in order to run custom experiments. A typical execution of the algorithm for custom experiments should be:
 
 ```
-a. prepare_for_opt_{face,action}(parameters): prepares the matrices that participate in the optimization procedure. See learn_{faces,actions}.m for more details regarding the parameters
+a. prepare_for_opt_{face,action}(parameters): prepares the matrices that participate in the optimization procedure. See learn_{faces,actions}.m for more details regarding the parameters. You can also experiment with the f mapping function (probabilities -> slack variable weights) from the build_bag_indicators.m file.
 b. result = main (movie_name, coordinate): executes the optimization, coordinate can be either 'face' or 'action'
 ```
 
