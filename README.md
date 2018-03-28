@@ -46,7 +46,7 @@ This code implements the text processing pipeline as described in the paper [1].
 
 1. Download and setup (set up your classpath) StanfordCoreNLP: https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
 2. Modify the global variable movies_folder in order to point to the folder where your movies are saved (See text_processing README for more information).
-3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point in the files where your action categories are saved (See text_processing README and 'Data' section for more information). Also you can modify the sentence similarity method.
+3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point to the files where your action categories are saved (See text_processing README and 'Data' section for more information). Also you can modify the sentence similarity method.
 4. Sign up to TMDB: https://www.themoviedb.org/, obtain an api_key and set the corresponding global variable (See text_processing README for more information). For new movies you need to form new queries to the database.
 5. We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
 6. The script files need to comply with the common screenplay format rules (in terms of indentation and capitalisation) in order to be properly segmented. The format is the following:
@@ -77,7 +77,7 @@ You can find the commands for the entire text processing pipeline in the text_pr
 This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments.
 
 1. Download and setup MOSEK for MATLAB: https://docs.mosek.com/8.1/toolbox/install-interface.html (Our code is tested with MOSEK 8.1). This is essential for all the optimization algorithms. See https://docs.mosek.com/8.1/toolbox/install-interface.html for instructions.
-2. Download and setup CVX: http://cvxr.com/cvx/download/ (Our code is tested with CVX 2.1). This is essential for the feasibility problem, i.e satisfying the constraints that the text imposes (see [1] for details). See http://web.cvxr.com/cvx/doc/install.html.
+2. Download and setup CVX: http://cvxr.com/cvx/download/ (Our code is tested with CVX 2.1). This is essential for the feasibility problem, i.e satisfying the constraints that the text imposes (see [1] for details). See http://web.cvxr.com/cvx/doc/install.html for instructions.
 3. Modify the paths in learn_faces.m, learn_actions.m similarly to the previous components of the system. Additionally, modify the global variables mosek_path and cvx_path that point to the external packages.
 4. In order to run the experiments of the algorithm on the visual concept of faces run :
 
