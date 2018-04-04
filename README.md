@@ -8,7 +8,7 @@ We also provide the system of weakly supervised action recognition, using pre-co
 
 Code
 =====================================
-### face-pipeline (MATLAB) :
+#### face-pipeline (MATLAB) :
 This code is based on [2],[3] and [4]. The main modifications are:
 
 - parallel implementation of the code
@@ -40,7 +40,7 @@ To manually annotate face tracks run (the paths need to be modified here as well
 check_tracks
 ```
 
-### text_processing (MATLAB + Python):
+#### text_processing (MATLAB + Python):
 
 This code implements the text processing pipeline as described in the paper [1].
 
@@ -72,7 +72,7 @@ sailing through his hair. (Description)
 
 You can find the commands for the entire text processing pipeline in the text_processing README.
 
-### multimodal_weakly_supervised_learning (MATLAB + mosek):
+#### multimodal_weakly_supervised_learning (MATLAB + mosek):
 
 This code implements the weakly supervised learning algorithm as described in the paper [1] and runs the related experiments.
 
