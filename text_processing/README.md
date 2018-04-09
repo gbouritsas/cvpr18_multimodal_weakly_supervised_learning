@@ -34,11 +34,13 @@ parse_xml_all(movies)
 
 ### MATLAB
 
+Please clone the external repository https://github.com/gbouritsas/script_to_subtitle_DTW inside the text_processing folder and then run the following commands.
+
 ```
 labels_extractor_all(movies);
-cd read_xml_script;
+cd script_to_subtitle_DTW;
 fps=24.9997500025000 * ones(length(movies)); % Vector containing the fps of each video
-cd read_xml_script; align_subs_script_all(movies ,1, fps); % the script-subtitle DTW algorithm
+align_subs_script_all(movies ,1, fps); % the script-subtitle DTW algorithm
 ```
 
 ### Python

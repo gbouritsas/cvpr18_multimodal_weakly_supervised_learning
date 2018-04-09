@@ -2,7 +2,7 @@ Description
 =====================================
 The implementation of the CVPR 2018 paper "Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques" [1].
 
-We provide the end-to-end system of weakly supervised face recognition. In particular the system comprises of three components: 1) face pipeline, 2) script pipeline, 3) multimodal weakly supervised learning. The implementation of 1) and 3) builds on previous code from Dr. Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline and https://github.com/piotr-bojanowski/actor-action respectively). We also thank Dr. Bojanowski for the implementation of the Dynamic Time Warping algorithm for the script-subtitle alignment.
+We provide the end-to-end system of weakly supervised face recognition. In particular the system comprises of three components: 1) face pipeline, 2) script pipeline, 3) multimodal weakly supervised learning. The implementation of 1) and 3) builds on previous code from Dr. Piotr Bojanowski (https://github.com/piotr-bojanowski/face-pipeline and https://github.com/piotr-bojanowski/actor-action respectively). We also thank Dr. Laptev and Dr. Bojanowski for the implementation of the Dynamic Time Warping algorithm for the script-subtitle alignment. This code is released in an external repository: https://github.com/gbouritsas/script_to_subtitle_DTW.
 
 We also provide the system of weakly supervised action recognition, using pre-computed action features.
 
@@ -45,11 +45,12 @@ check_tracks
 This code implements the text processing pipeline as described in the paper [1].
 
 1. Download and setup (set up your classpath) StanfordCoreNLP: https://stanfordnlp.github.io/CoreNLP/download.html (Our code is tested with CoreNLP 3.9.1)
-2. Modify the global variable movies_folder in order to point to the folder where your movies are saved (See text_processing README for more information).
-3. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point to the files where your action categories are saved (See text_processing README and 'Data' section for more information). Also you can modify the sentence similarity method.
-4. Sign up to TMDB: https://www.themoviedb.org/, obtain an api_key and set the corresponding global variable (See text_processing README for more information). For new movies you need to form new queries to the database.
-5. We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
-6. The script files need to comply with the common screenplay format rules (in terms of indentation and capitalisation) in order to be properly segmented. The format is the following:
+2. Clone the external repository https://github.com/gbouritsas/script_to_subtitle_DTW inside the text_processing folder.
+3. Modify the global variable movies_folder in order to point to the folder where your movies are saved (See text_processing README for more information).
+4. Modify the global variables categories_folder, categories_extended_file, categories_small_file in order to point to the files where your action categories are saved (See text_processing README and 'Data' section for more information). Also you can modify the sentence similarity method.
+5. Sign up to TMDB: https://www.themoviedb.org/, obtain an api_key and set the corresponding global variable (See text_processing README for more information). For new movies you need to form new queries to the database.
+6. We assume that the movie script and the subtitles files have the same name with the movie (extension .txt and .srt.txt respectively) and are located in a folder that has also the same name.
+7. The script files need to comply with the common screenplay format rules (in terms of indentation and capitalisation) in order to be properly segmented. The format is the following:
 
 ```
 SCENE
@@ -105,10 +106,10 @@ Data
 
 References
 =====================================
-[1] G. Bouritsas, P. Koutras, A. Zlatintsi and P. Maragos. Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques. CVPR 2018
+[1] G. Bouritsas, P. Koutras, A. Zlatintsi and P. Maragos. Multimodal Visual Concept Learning with Weakly Supervised Learning Techinques. CVPR 2018.
 
 [2] M. Everingham, J. Sivic and A. Zisserman. "Hello! My name is... Buffy" - Automatic Naming of Characters in TV Video. BMVC 2006.
 
 [3] J. Sivic, M. Everingham and A. Zisserman. "Who are you?" : Learning person specific classifiers from video. CVPR 2009.
 
-[4] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic. Finding actors and actions in movies. ICCV 2013
+[4] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic. Finding actors and actions in movies. ICCV 2013.
