@@ -168,6 +168,7 @@ do_not_push/
 word_embeddings/
 movies/
 manual_annotation/
+text_processing/script_to_subtitle_DTW
 
 # End of https://www.gitignore.io/api/python
 
