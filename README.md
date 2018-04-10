@@ -113,3 +113,6 @@ References
 [3] J. Sivic, M. Everingham and A. Zisserman. "Who are you?" : Learning person specific classifiers from video. CVPR 2009.
 
 [4] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic. Finding actors and actions in movies. ICCV 2013.
+
+
+Please contact Giorgos Bouritsas at gbouritsas@central.ntua.gr in case you have any questions or suggestions.
