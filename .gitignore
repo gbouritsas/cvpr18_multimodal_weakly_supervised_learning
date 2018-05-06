@@ -169,6 +169,8 @@ word_embeddings/
 movies/
 manual_annotation/
 text_processing/script_to_subtitle_DTW
+multimodal_weakly_supervised_learning/block_coordinate_optimization.m
+multimodal_weakly_supervised_learning/prepare_for_bc_opt.m
 
 # End of https://www.gitignore.io/api/python
 
