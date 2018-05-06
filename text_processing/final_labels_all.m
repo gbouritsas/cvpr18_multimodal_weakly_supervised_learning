@@ -9,7 +9,7 @@ function final_labels_all(movies,cast_list_flag,person_tagnames,action_tagnames,
   %   SIMILARITY_METHOD: chose method of precomputed similarities, e.g
   %   'wordnet','word2vec','glove','fasttext','sent2vec',....
 
-	addpath('../text_processing/read_xml_script')
+	addpath('script_to_subtitle_DTW')
 	global movies_folder
 	global categories_folder
 	global categories_extended_file

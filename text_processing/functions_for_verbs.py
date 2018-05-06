@@ -24,7 +24,7 @@ def fast_xml_to_mat(movie_name,input_folder):
     with codecs.open(input_folder + movie_name,'r','utf-8') as fd:
         doc = xmltodict.parse(fd.read())
     return(doc)
-    
+
 #change this if possible because internet requests extremely slow the processing down.
 #there is a java implementation to replace this(wishlist)
 sss_url="http://swoogle.umbc.edu/SimService/GetSimilarity"
@@ -45,7 +45,7 @@ def sss(s1, s2, type='relation', corpus='webbase'):
                 print ('Error in getting similarity for %s: %s' % ((s1,s2), response))
                 if connected:
                     return(0.0)
-            
+
 def sw2v(s1, s2, model,num_features,index2word_set):
     s1_afv = avg_feature_vector(s1, model, num_features, index2word_set)
     s2_afv = avg_feature_vector(s2, model, num_features, index2word_set)
@@ -53,7 +53,7 @@ def sw2v(s1, s2, model,num_features,index2word_set):
         sim=0
     else:
         sim = 1 - spatial.distance.cosine(s1_afv, s2_afv)
-    return sim
+    return s1_afv, s2_afv, sim
 
 def avg_feature_vector(sentence, model, num_features, index2word_set):
     words = sentence.split()
@@ -79,6 +79,10 @@ def verb_classification(movie_mat,mat,method,model,num_features,index2word_set):
     final_ids=[]
     sentence_ids=[]
     similarities_all=[]
+    if method == 'word2vec' or method == 'glove':
+        sentences_embeddings = np.zeros((sentences.shape[1],num_features))
+    elif method == 'wordnet':
+        sentences_embeddings = np.zeros((sentences.shape[1],1))
     if method=='sent2vec':
         sent=[]
         for j in range(0,sentences.shape[1]):
@@ -104,9 +108,9 @@ def verb_classification(movie_mat,mat,method,model,num_features,index2word_set):
                 if method=='wordnet':
                     sentence_similarity=sss(s.translate(translator),category)
                 elif method=='word2vec':
-                    sentence_similarity=sw2v(s.translate(translator),category,model,num_features,index2word_set)
+                    sentences_embeddings[j,:],_,sentence_similarity=sw2v(s.translate(translator),category,model,num_features,index2word_set)
                 elif method=='glove':
-                    sentence_similarity=sw2v(s.translate(translator),category,model,num_features,index2word_set)
+                    sentences_embeddings[j,:],_,sentence_similarity=sw2v(s.translate(translator),category,model,num_features,index2word_set)
                 elif method=='fasttext':
                     sentence_similarity=sfast(s.translate(translator),category)
                 elif method=='sent2vec':
@@ -122,10 +126,9 @@ def verb_classification(movie_mat,mat,method,model,num_features,index2word_set):
             similarities_all.append([0.0 for i in range(0,len(categories))])
             final_similarities.append(0.0)
             final_categories.append('negative')
-            final_ids.append(0)   
-        
+            final_ids.append(0)
+    
     obj_arr=np.array(final_categories,dtype=numpy.object)
     obj_arr_1 =np.array(similarities_all,dtype=numpy.object)
-    mdict={'final_categories':obj_arr,'final_similarities':final_similarities,'final_ids':final_ids,'similarities_all':obj_arr_1}
+    mdict={'sentences_embeddings_all':sentences_embeddings,'final_categories':obj_arr,'final_similarities':final_similarities,'final_ids':final_ids,'similarities_all':obj_arr_1}
     return(mdict)
- 

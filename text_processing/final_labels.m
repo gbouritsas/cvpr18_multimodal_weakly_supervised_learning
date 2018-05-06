@@ -57,6 +57,8 @@ function [person_names,action_labels]=final_labels(input_folder,scrfname,...
 	sentences_with_ids=sentences_with_ids(b);
 	dependencies=dependencies(b);
 	similarities_all=similarities_all(b);
+    sentences_embeddings_all = sentences_embeddings_all(b,:);
+    
     
     
     
@@ -67,6 +69,7 @@ function [person_names,action_labels]=final_labels(input_folder,scrfname,...
 	subjects=cell(0);
 	verb_items=[];	
 	simil=cell(0);
+    sentences_embeddings = cell(0);
     for i=1:length(sentences_with_ids)
         clear verb_item
         mention={sentences_with_ids(i).sentences};
@@ -80,6 +83,7 @@ function [person_names,action_labels]=final_labels(input_folder,scrfname,...
         subject={dependencies(i).subj};
 		subjects=[subjects subject];	
 		simil=[simil similarities_all(i)];
+        sentences_embeddings = [sentences_embeddings {sentences_embeddings_all(i,:)}];
 		word=sentences_with_ids(i).word_id;
         for j=1:length(items)
             if word>=items(j).begin_word & word<=items(j).end_word
@@ -91,7 +95,7 @@ function [person_names,action_labels]=final_labels(input_folder,scrfname,...
         items=items(j:end);		
         verb_items=[verb_items verb_item];
     end
-    action_labels=struct('subjects',subjects,'mentions',mentions,'sentences',sentences,'tokens',tokens,'word_ids',word_ids,'items',mat2cell(verb_items,1,ones(size(verb_items))),'similarity',simil);
+    action_labels=struct('subjects',subjects,'mentions',mentions,'sentences',sentences,'tokens',tokens,'word_ids',word_ids,'items',mat2cell(verb_items,1,ones(size(verb_items))),'similarity',simil,'embeddings',sentences_embeddings);
 
 	%action_labels=struct('word_ids',word_ids,'items',mat2cell(verb_items,1,ones(size(verb_items))),'similarity',simil);
 
@@ -102,7 +106,6 @@ function [person_names,action_labels]=final_labels(input_folder,scrfname,...
         text_part_flag=text_part_flag+strcmp(extractfield(temp_items,'tagname'),cell2mat(tagname));
     end
     action_labels=action_labels(logical(text_part_flag));	
-
     
     
     action_labels_temp=action_labels;

@@ -85,6 +85,7 @@ for movie_name=movies
 
     %% 
     S=cat(1,[],action_labels.similarity);
+    embeddings = cat(1,[],action_labels.embeddings);
     newcat=cat(1,[],{categories_ids.categories});
     
     if strcmp(method_of_classes,'ground truth')
@@ -119,9 +120,11 @@ for movie_name=movies
     S(S<similarity_threshold)=0;
     if sum(sum(S))==0
         S=zeros(1,size(S,2));
+        embeddings=zeros(1,size(embeddings,2));
         action_labels=action_labels(1);
     else
         action_labels=action_labels(sum(S,2)~=0);
+        embeddings = embeddings(sum(S,2)~=0,:);
         S=S(sum(S,2)~=0,:);
         prob=bsxfun(@(x,y) x/y,S',sum(S'));
         S=double(prob');
@@ -139,11 +142,13 @@ for movie_name=movies
         bags(i).ascore=action_labels(i).items.ascore;
         bags(i).person= action_labels(i).subject_classes;
         bags(i).similarity=S(i,:);
+        bags(i).embeddings=embeddings(i,:);
     end
     [~,b]=sort(begin_frame);
     bags=bags(b);
     action_labels=action_labels(b);
     S=cat(1,[],bags.similarity);
+    embeddings=cat(1,[],bags.embeddings);
     
     %% 
     f=cat(1,[],bags.f);
@@ -207,11 +212,13 @@ for movie_name=movies
     
     other_similarities=zeros(size(S,1),1);
     S=[other_similarities S;ones(size(A,1)-length(bags),1) zeros((size(A,1)-length(bags)),size(S,2))];
+    embeddings = [embeddings; zeros(1,size(embeddings,2))];
     S(isnan(S))=0;
     l=length(bags);
     for i=1:size(A,1)-length(bags)
         bags(l+i).ascore=1;
         bags(l+i).similarity=S(l+i,:);
+        bags(l+i).embeddings=embeddings(l+i,:);
     end
     %%      8)
     if strcmp(label_set,'open')==1
@@ -221,6 +228,7 @@ for movie_name=movies
         GTa(GTa==0)=max(GTa)+1;
         
         S=S(1:end-1,2:end);
+        embeddings=embeddings(1:end-1,:);
         bags=bags(1:end-1);
         
         A=A(1:end-1,:);
@@ -273,7 +281,10 @@ for movie_name=movies
     B= ones(size(Ka,1),1);
     T= 1;
     S1=ones(size(A,1),1);
-    save(fullfile(result_folder,'data_new_experiment.mat'),'GTa','Ka','Koa','tframes','toeval','S','A','T','B','S1','probs','action_labels','keep_categories');
+    norms = sqrt(sum(embeddings.^2,2));
+    embeddings_normalized = bsxfun(@rdivide,embeddings,norms(:));
+    K_embeddings = embeddings_normalized*embeddings_normalized';
+    save(fullfile(result_folder,'data_new_experiment.mat'),'GTa','Ka','Koa','tframes','toeval','S','A','T','B','S1','probs','action_labels','keep_categories','K_embeddings');
     
     
 end

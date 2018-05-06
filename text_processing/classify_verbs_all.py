@@ -15,7 +15,7 @@ sys.path.insert(0, 'word_embeddings/sent2vec/')
 #from get_sentence_embeddings_from_pre_trained_models import*
 
 def classify_verbs_all(movies, method):
-    mat = scio.loadmat(categories_folder + categories_small_file,struct_as_record=0)    
+    mat = scio.loadmat(categories_folder + categories_small_file,struct_as_record=0)
     if method=='word2vec':
         # adjust word2vec path
         word2vec_path = '../word_embeddings/word2vec/GoogleNews-vectors-negative300.bin'
@@ -72,17 +72,17 @@ def loadGloveModel(gloveFile):
     print('Done.')
     return model;
 # %%
- 
+
 # Modify this path:
 global movies_folder; movies_folder = '/Users/giorgosmpouritsas/Documents/movies/'
 global movies; movies = ['BMI', 'CRA', 'DEP', 'GLA', 'LOR']
-    
+
 # Modify this path:
 global categories_folder; categories_folder='../manual_annotation/'
 global categories_small_file; categories_small_file='categories_ids_47.mat'
 method='wordnet'
 
-#classify_verbs_all(movies, method)
+classify_verbs_all(movies, method)
 
 
 
