@@ -100,8 +100,8 @@ b. result = main (movie_name, coordinate): executes the optimization, coordinate
 
 Data
 =====================================
-1. You can find the - necessary for the learning algorithm - outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) in . We also provide the ground truth of the examples.
-2. Our action categories can be found in the same link in the file manual_annotation/categories_ids_47.mat. An extended version of the categories is provided in manual_annotation/categories_ids.mat.
+1. You can find the - necessary for the learning algorithm - outputs of the face and action pipeline (precomputed features/kernels), as well as those of the script pipeline (person/action labels) at http://cvsp.cs.ntua.gr/research/multimodal_weakly_supervised_learning/. We also provide the ground truth of the examples.
+2. Our action categories can be found at the same link in the file manual_annotation/categories_ids_47.mat. An extended version of the categories is provided in manual_annotation/categories_ids.mat.
 
 
 References
@@ -113,3 +113,6 @@ References
 [3] J. Sivic, M. Everingham and A. Zisserman. "Who are you?" : Learning person specific classifiers from video. CVPR 2009.
 
 [4] P. Bojanowski, F. Bach, I. Laptev, J. Ponce, C. Schmid, and J. Sivic. Finding actors and actions in movies. ICCV 2013.
+
+
+Please contact Giorgos Bouritsas at gbouritsas@central.ntua.gr in case you have any questions or suggestions.
