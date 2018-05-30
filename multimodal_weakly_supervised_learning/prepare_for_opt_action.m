@@ -85,7 +85,11 @@ for movie_name=movies
 
     %% 
     S=cat(1,[],action_labels.similarity);
-    embeddings = cat(1,[],action_labels.embeddings);
+    if isfield(action_labels,'embeddings')
+        embeddings = cat(1,[],action_labels.embeddings);
+    else
+        embeddings = zeros(size(S,1),1);
+    end
     newcat=cat(1,[],{categories_ids.categories});
     
     if strcmp(method_of_classes,'ground truth')
